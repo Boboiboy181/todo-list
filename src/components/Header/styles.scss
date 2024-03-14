@@ -1,0 +1,70 @@
+@import '../../variables.scss';
+
+.header {
+  width: 100%;
+  padding: 65px 0;
+  border-radius: 0 0 7px 7px;
+  background-color: $header-bg-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &-container {
+    width: 30%;
+    text-align: center;
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    h1 {
+      color: white;
+      font-size: 2rem;
+      align-self: flex-start;
+      margin: unset;
+    }
+
+    .input-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+
+      input {
+        flex: 1;
+        padding: 15px;
+        border-radius: 5px;
+        border: none;
+        appearance: none;
+        font-family: "Figtree", sans-serif;
+        font-weight: 600;
+        font-size: 0.9rem;
+        outline: none;
+        background-color: $secondary-color;
+        color: $primary-color;
+      }
+
+      button {
+        padding: 15px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: $button-color;
+        color: white;
+        cursor: pointer;
+        font-family: "Figtree", sans-serif;
+        font-weight: 600;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: $button-hover-color;
+        }
+
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+    }
+  }
+}
