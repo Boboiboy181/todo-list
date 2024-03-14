@@ -1,0 +1,86 @@
+@import '../../variables.scss';
+
+.todo-item {
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  background-color: white;
+  list-style: none;
+  width: 100%;
+
+  &-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    input {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid #000;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      &:checked {
+        background-color: $third-color;
+
+        &::after {
+          content: '\2713';
+          font-size: 1.2rem;
+          color: white;
+          position: absolute;
+        }
+      }
+    }
+  }
+
+  &-action {
+    display: flex;
+    gap: 5px;
+
+    button {
+      background-color: white;
+      padding: 5px 5px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+
+      &:hover {
+        background-color: #f4f1f1;
+      }
+
+      &:active {
+        transform: scale(0.9);
+      }
+    }
+
+    select {
+      padding: 5px 5px;
+      border: 1px solid #000;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      outline: none;
+    }
+  }
+
+  &.active {
+    text-decoration: line-through;
+    background-color: #89ed94;
+  }
+}

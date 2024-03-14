@@ -2,7 +2,7 @@ import "./styles.scss";
 
 const Header = () => {
   return (
-    <div className="header">
+    <header className="header">
       <div className="header-container">
         <h1>Today</h1>
         <div className="input-container">
@@ -10,7 +10,7 @@ const Header = () => {
           <button>ADD TASK</button>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

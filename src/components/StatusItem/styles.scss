@@ -1,0 +1,38 @@
+@import '../../variables.scss';
+
+.status-item-container {
+  list-style: none;
+
+  button {
+    background-color: white;
+    padding: 5px 5px;
+    border: none;
+    font-family: "Figtree", sans-serif;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    font-size: 0.9rem;
+    padding: 0;
+    margin: 0;
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  &__status {
+    background-color: $secondary-color;
+    border-radius: 5px 0 0 5px;
+    padding: 5px 8px;
+    color: white;
+  }
+
+  &__count {
+    font-weight: 600;
+    background-color: $fourth-color;
+    text-align: right;
+    padding: 5px 8px;
+    border-radius: 0 5px 5px 0;
+    color: white;
+  }
+}
