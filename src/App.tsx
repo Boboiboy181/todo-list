@@ -7,9 +7,32 @@ import { Todo } from "./types/Todo";
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [filterValue, setFilterValue] = useState<
+    "All" | "Incomplete" | "In-progress" | "Completed"
+  >("All");
+
+  const filteredTodos = todos.filter((todo) => {
+    if (filterValue === "All") {
+      return true;
+    }
+    return todo.status === filterValue;
+  });
 
   const addTodo = (todo: Todo) => {
     setTodos([...todos, todo]);
+  };
+
+  const updateTodo = (
+    id: string,
+    status: "Incomplete" | "In-progress" | "Completed"
+  ) => {
+    const newTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        todo.status = status;
+      }
+      return todo;
+    });
+    setTodos([...newTodos]);
   };
 
   const deleteTodo = (id: string) => {
@@ -26,12 +49,16 @@ function App() {
       <Header addTodo={addTodo} />
       <section className="body">
         <div className="todo-container">
-          {todos.length === 0 ? (
+          <StatusList todos={todos} setValue={setFilterValue} />
+          {filteredTodos.length === 0 ? (
             <p className="empty">No todos yet. Add a todo to get started.</p>
           ) : (
             <Fragment>
-              <StatusList todos={todos} />
-              <TodoList todos={todos} deleteTodo={deleteTodo} />
+              <TodoList
+                todos={todos}
+                deleteTodo={deleteTodo}
+                updateTodo={updateTodo}
+              />
               <button onClick={clearAll} className="clear-all">
                 Clear All
               </button>

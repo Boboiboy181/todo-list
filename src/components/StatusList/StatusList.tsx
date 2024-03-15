@@ -5,26 +5,30 @@ import "./styles.scss";
 
 type StatusListProps = {
   todos: Todo[];
+  setValue: React.Dispatch<
+    React.SetStateAction<"All" | "Incomplete" | "In-progress" | "Completed">
+  >;
 };
 
-const StatusList = ({ todos }: StatusListProps) => {
-  const countIncomplete = todos.filter(
-    (todo) => todo.status === "Incomplete"
-  ).length;
+const statuses = ["All", "Incomplete", "In-progress", "Completed"];
 
-  const countInProgress = todos.filter(
-    (todo) => todo.status === "In-progress"
-  ).length;
-
-  const countCompleted = todos.filter(
-    (todo) => todo.status === "Completed"
-  ).length;
-
+const StatusList = ({ todos, setValue }: StatusListProps) => {
   return (
     <ul className="status-list-container">
-      <StatusItem status="Incomplete" count={countIncomplete}/>
-      <StatusItem status="In-progress"count={countInProgress}/>
-      <StatusItem status="Completed" count={countCompleted}/>
+      {statuses.map((status) => {
+        return (
+          <StatusItem
+            key={status}
+            status={status}
+            count={
+              status === "All"
+                ? todos.length
+                : todos.filter((todo) => todo.status === status).length
+            }
+            setValue={setValue}
+          />
+        );
+      })}
     </ul>
   );
 };

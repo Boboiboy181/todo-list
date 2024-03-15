@@ -11,6 +11,8 @@ const Header = ({ addTodo }: HeaderProps) => {
     e.preventDefault();
     const inputElement = e.currentTarget[0] as HTMLInputElement;
 
+    if (inputElement.value === "") return;
+
     const newTodo: Todo = {
       id: uuidv4(),
       content: inputElement.value,
