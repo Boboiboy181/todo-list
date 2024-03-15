@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import "./App.scss";
 import Header from "./components/Header/Header";
 import StatusList from "./components/StatusList/StatusList";
@@ -11,6 +11,13 @@ function App() {
     "All" | "Incomplete" | "In-progress" | "Completed"
   >("All");
 
+  useEffect(() => {
+    const data = localStorage.getItem("todos");
+    if (data) {
+      setTodos(JSON.parse(data));
+    }
+  }, []);
+
   const filteredTodos = todos.filter((todo) => {
     if (filterValue === "All") {
       return true;
@@ -18,8 +25,13 @@ function App() {
     return todo.status === filterValue;
   });
 
+  const setData = (todos: Todo[]) => {
+    setTodos(todos);
+    localStorage.setItem("todos", JSON.stringify(todos));
+  };
+
   const addTodo = (todo: Todo) => {
-    setTodos([...todos, todo]);
+    setData([...todos, todo]);
   };
 
   const updateTodo = (
@@ -37,17 +49,17 @@ function App() {
       }
       return todo;
     });
-    setTodos([...newTodos]);
+    setData(newTodos);
   };
 
   const deleteTodo = (id: string) => {
     const newTodos = todos.filter((todo) => todo.id !== id);
-    setTodos([...newTodos]);
+    setData(newTodos);
   };
 
   const clearAllCompletedTodos = () => {
     const newTodos = todos.filter((todo) => todo.status !== "Completed");
-    setTodos([...newTodos]);
+    setData(newTodos);
   };
 
   return (

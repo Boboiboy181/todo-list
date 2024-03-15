@@ -17,6 +17,7 @@ const TodoItem = ({ item, deleteTodo, updateTodo }: TodoItemProps) => {
 
   const [isEditing, setIsEditing] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const checkboxRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (isEditing) {
@@ -24,12 +25,17 @@ const TodoItem = ({ item, deleteTodo, updateTodo }: TodoItemProps) => {
     }
   }, [isEditing]);
 
-  const handleChangeStatus = (e: ChangeEvent<HTMLSelectElement>) => {
-    const newStatus = e.target.value as
-      | "Incomplete"
-      | "In-progress"
-      | "Completed";
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const newStatus = e.target.checked ? "Completed" : "Incomplete";
     updateTodo(id, newStatus);
+  };
+
+  const handleButtonChange = () => {
+    const newStatus = status === "In-progress" ? "Incomplete" : "In-progress";
+    updateTodo(id, newStatus);
+    if (checkboxRef.current) {
+      checkboxRef.current.checked = false;
+    }
   };
 
   const handleOpenEdit = () => {
@@ -51,6 +57,12 @@ const TodoItem = ({ item, deleteTodo, updateTodo }: TodoItemProps) => {
     <li className={`todo-item ${isCompleted}`}>
       <div className="todo-item-container">
         <div className="todo-item-content">
+          <input
+            type="checkbox"
+            ref={checkboxRef}
+            onChange={(e) => handleCheckboxChange(e)}
+            checked={status === "Completed"}
+          />
           {isEditing ? (
             <input type="text" defaultValue={content} ref={inputRef} />
           ) : (
@@ -58,11 +70,16 @@ const TodoItem = ({ item, deleteTodo, updateTodo }: TodoItemProps) => {
           )}
         </div>
         <div className="todo-item-action">
-          <select defaultValue={status} onChange={(e) => handleChangeStatus(e)}>
-            <option value="Incomplete">Incomplete</option>
-            <option value="In-progress">In-progress</option>
-            <option value="Completed">Completed</option>
-          </select>
+          <button
+            onClick={handleButtonChange}
+            className="todo-item-action__play"
+          >
+            {status === "In-progress" ? (
+              <i className="fa-regular fa-pause"></i>
+            ) : (
+              <i className="fa-regular fa-play"></i>
+            )}
+          </button>
 
           {isEditing ? (
             <button onClick={handleSaveEdit} className="todo-item-action__edit">
