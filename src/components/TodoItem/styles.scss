@@ -1,4 +1,4 @@
-@import '../../variables.scss';
+@import '../../scss/variables.scss';
 
 .todo-item {
   padding: 15px;
@@ -13,40 +13,29 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 10px;
   }
 
   &-content {
     display: flex;
     align-items: center;
     gap: 15px;
+    flex: 1;
 
     p {
       overflow-x: auto;
     }
 
     input {
+      padding: 5px;
+      border: none;
       appearance: none;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      cursor: pointer;
-      border: 2px solid #000;
-      background-color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-
-      &:checked {
-        background-color: $third-color;
-
-        &::after {
-          content: '\2713';
-          font-size: 1.2rem;
-          color: white;
-          position: absolute;
-        }
-      }
+      font-family: "Figtree", sans-serif;
+      font-size: 1rem;
+      outline: none;
+      color: black;
+      width: 100%;
+      border-radius: 5px;
     }
   }
 
@@ -62,6 +51,7 @@
       cursor: pointer;
       transition: all 0.3s ease;
       font-size: 0.9rem;
+      min-width: 25px;
 
       &:hover {
         background-color: #f4f1f1;
@@ -85,18 +75,21 @@
 
   &.completed {
     background-color: $third-color;
+    color: $fourth-color;
 
     p {
       text-decoration: line-through;
     }
 
     select {
-      // border: none;
-      background-color: unset;
+      color: white;
+      border-color: green;
+      background-color: green;
     }
 
     button {
       background-color: unset;
+      color: $fourth-color;
 
       &:hover {
         color: #777;

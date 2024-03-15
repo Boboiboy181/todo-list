@@ -6,7 +6,8 @@ type TodoListProps = {
   todos: Todo[];
   updateTodo: (
     id: string,
-    status: "Incomplete" | "In-progress" | "Completed"
+    status?: "Incomplete" | "In-progress" | "Completed",
+    content?: string
   ) => void;
   deleteTodo: (id: string) => void;
 };

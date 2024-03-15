@@ -24,11 +24,16 @@ function App() {
 
   const updateTodo = (
     id: string,
-    status: "Incomplete" | "In-progress" | "Completed"
+    status?: "Incomplete" | "In-progress" | "Completed",
+    content?: string
   ) => {
     const newTodos = todos.map((todo) => {
       if (todo.id === id) {
-        todo.status = status;
+        return {
+          ...todo,
+          status: status || todo.status,
+          content: content || todo.content,
+        };
       }
       return todo;
     });
@@ -50,7 +55,11 @@ function App() {
       <Header addTodo={addTodo} />
       <section className="body">
         <div className="todo-container">
-          <StatusList todos={todos} filterValue={filterValue} setValue={setFilterValue} />
+          <StatusList
+            todos={todos}
+            filterValue={filterValue}
+            setValue={setFilterValue}
+          />
           {filteredTodos.length === 0 ? (
             <p className="empty">No todos yet. Add a todo to get started.</p>
           ) : (
