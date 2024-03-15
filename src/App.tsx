@@ -90,6 +90,14 @@ function App() {
           )}
         </div>
       </section>
+      <footer>
+        Inspired by{" "}
+        <a href="https://www.youtube.com/watch?v=y71CdVq5SvI&t=1349s">
+          Envato Tuts+
+        </a>
+        . Developed by{"     "}
+        <a href="https://www.linkedin.com/in/dao-gia-hai/">Gia Hai</a>
+      </footer>
     </div>
   );
 }

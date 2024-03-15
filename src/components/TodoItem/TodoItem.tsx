@@ -70,6 +70,7 @@ const TodoItem = ({ item, deleteTodo, updateTodo }: TodoItemProps) => {
           )}
         </div>
         <div className="todo-item-action">
+          <span className={`${status}`}>{status}</span>
           <button
             onClick={handleButtonChange}
             className="todo-item-action__play"

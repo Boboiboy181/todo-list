@@ -76,7 +76,27 @@
 
   &-action {
     display: flex;
+    align-items: center;
     gap: 5px;
+
+    span {
+      display: inline-block;
+      padding: 5px 8px;
+      border-radius: 5px;
+      color: white;
+
+      &.Incomplete {
+        background-color: $secondary-color;
+      }
+
+      &.Completed {
+        background-color: green;
+      }
+
+      &.In-progress {
+        background-color: $button-color;
+      }
+    }
 
     button {
       background-color: white;
