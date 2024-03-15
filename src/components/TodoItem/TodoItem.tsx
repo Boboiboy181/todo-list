@@ -1,8 +1,13 @@
 import { Todo } from "../../types/Todo";
 import "./styles.scss";
 
-const TodoItem = ({ item }: { item: Todo }) => {
-  const { content } = item;
+type TodoItemProps = {
+  item: Todo;
+  deleteTodo: (id: string) => void;
+};
+
+const TodoItem = ({ item, deleteTodo }: TodoItemProps) => {
+  const { content, id } = item;
 
   return (
     <li className="todo-item">
@@ -19,7 +24,7 @@ const TodoItem = ({ item }: { item: Todo }) => {
           <button className="todo-item-action__edit">
             <i className="fa-light fa-pen-to-square"></i>
           </button>
-          <button className="todo-item-action__del">
+          <button onClick={() => deleteTodo(id)} className="todo-item-action__del">
             <i className="fa-regular fa-x"></i>
           </button>
         </div>
