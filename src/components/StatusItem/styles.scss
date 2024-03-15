@@ -3,6 +3,18 @@
 .status-item-container {
   list-style: none;
 
+  &.active {
+    button {
+      span:nth-child(1) {
+        background-color: $secondary-color;
+      }
+
+      span:nth-child(2) {
+        background-color: $fourth-color;
+      }
+    }
+  }
+
   button {
     background-color: white;
     padding: 5px 5px;
@@ -18,10 +30,14 @@
     &:active {
       transform: scale(0.95);
     }
+
+    span {
+      transition: all 0.4s ease;
+    }
   }
 
   &__status {
-    background-color: $secondary-color;
+    background-color: #7b7878;
     border-radius: 5px 0 0 5px;
     padding: 5px 8px;
     color: white;
@@ -29,7 +45,7 @@
 
   &__count {
     font-weight: 600;
-    background-color: $fourth-color;
+    background-color: #b4a4a4;
     text-align: right;
     padding: 5px 8px;
     border-radius: 0 5px 5px 0;

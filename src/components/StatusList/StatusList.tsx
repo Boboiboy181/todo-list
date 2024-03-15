@@ -5,6 +5,7 @@ import "./styles.scss";
 
 type StatusListProps = {
   todos: Todo[];
+  filterValue: "All" | "Incomplete" | "In-progress" | "Completed";
   setValue: React.Dispatch<
     React.SetStateAction<"All" | "Incomplete" | "In-progress" | "Completed">
   >;
@@ -12,7 +13,7 @@ type StatusListProps = {
 
 const statuses = ["All", "Incomplete", "In-progress", "Completed"];
 
-const StatusList = ({ todos, setValue }: StatusListProps) => {
+const StatusList = ({ todos, filterValue, setValue }: StatusListProps) => {
   return (
     <ul className="status-list-container">
       {statuses.map((status) => {
@@ -25,6 +26,7 @@ const StatusList = ({ todos, setValue }: StatusListProps) => {
                 ? todos.length
                 : todos.filter((todo) => todo.status === status).length
             }
+            filterValue={filterValue}
             setValue={setValue}
           />
         );

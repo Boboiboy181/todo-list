@@ -40,8 +40,9 @@ function App() {
     setTodos([...newTodos]);
   };
 
-  const clearAll = () => {
-    setTodos([]);
+  const clearAllCompletedTodos = () => {
+    const newTodos = todos.filter((todo) => todo.status !== "Completed");
+    setTodos([...newTodos]);
   };
 
   return (
@@ -49,19 +50,21 @@ function App() {
       <Header addTodo={addTodo} />
       <section className="body">
         <div className="todo-container">
-          <StatusList todos={todos} setValue={setFilterValue} />
+          <StatusList todos={todos} filterValue={filterValue} setValue={setFilterValue} />
           {filteredTodos.length === 0 ? (
             <p className="empty">No todos yet. Add a todo to get started.</p>
           ) : (
             <Fragment>
               <TodoList
-                todos={todos}
+                todos={filteredTodos}
                 deleteTodo={deleteTodo}
                 updateTodo={updateTodo}
               />
-              <button onClick={clearAll} className="clear-all">
-                Clear All
-              </button>
+              {(filterValue === "Completed" || filterValue === "All") && (
+                <button onClick={clearAllCompletedTodos} className="clear-all">
+                  <i className="fa-regular fa-trash"></i> Completed
+                </button>
+              )}
             </Fragment>
           )}
         </div>

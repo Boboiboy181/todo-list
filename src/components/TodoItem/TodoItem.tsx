@@ -22,8 +22,10 @@ const TodoItem = ({ item, deleteTodo, updateTodo }: TodoItemProps) => {
     updateTodo(id, newStatus);
   };
 
+  const isCompleted = status === "Completed" ? "completed" : "";
+
   return (
-    <li className="todo-item">
+    <li className={`todo-item ${isCompleted}`}>
       <div className="todo-item-container">
         <div className="todo-item-content">
           <p>{content}</p>

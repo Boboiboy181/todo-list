@@ -20,6 +20,10 @@
     align-items: center;
     gap: 15px;
 
+    p {
+      overflow-x: auto;
+    }
+
     input {
       appearance: none;
       width: 20px;
@@ -70,7 +74,7 @@
 
     select {
       padding: 5px 5px;
-      border: 1px solid #000;
+      border: 1.5px solid #000;
       border-radius: 5px;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -79,8 +83,24 @@
     }
   }
 
-  &.active {
-    text-decoration: line-through;
-    background-color: #89ed94;
+  &.completed {
+    background-color: $third-color;
+
+    p {
+      text-decoration: line-through;
+    }
+
+    select {
+      // border: none;
+      background-color: unset;
+    }
+
+    button {
+      background-color: unset;
+
+      &:hover {
+        color: #777;
+      }
+    }
   }
 }
